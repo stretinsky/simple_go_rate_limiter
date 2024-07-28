@@ -8,14 +8,15 @@ import (
 )
 
 func main() {
+	tokensLimit := 5
+	tokens := make(chan int, tokensLimit)
+
 	listener, err := net.Listen("tcp", ":8000")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	defer listener.Close()
-
-	tokens := make(chan int, 1)
 
 	fmt.Println("Server is listening...")
 	for {
